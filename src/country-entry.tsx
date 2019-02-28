@@ -1,16 +1,23 @@
-import React from "react";
+import React, { createContext, useContext } from "react";
 import ReactDOM from "react-dom";
+import { StoreProvider } from 'easy-peasy';
 
-import { CountryInformationPage } from "./countryinfo.tsx";
+import { CountryInformationPage } from "./countryinfo";
+import { Navigation } from "./navbar";
+import { CountryData } from "./countrydata";
+import { store } from "./countrystore";
 
 const App = () => {
-  return  (
-    <h2>
-    hello world
+  return (
+    <>
+    <StoreProvider store={store}>
+    <Navigation />
+    Select your country below
     <CountryInformationPage />
-    </h2>
+    <CountryData />
+    </StoreProvider>
+    </>
   );
 };
-
 
 ReactDOM.render(<App />, document.getElementById("content"));
