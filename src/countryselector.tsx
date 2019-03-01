@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MenuItem, Button } from "@blueprintjs/core";
 import { Select, ItemPredicate, ItemRenderer } from "@blueprintjs/select";
 
-import { useActions } from "./countrystore";
+import { useActions, useStore } from "./countrystore";
 
 export type CountryElem = {
   name: string;
@@ -28,13 +28,18 @@ const renderCountry: ItemRenderer<CountryElem> = ( country, { handleClick, modif
   );
 };
 
-export const CountrySelector: React.FC<{ info: CountryElem[] }> = ({ info }) => {
+export const CountrySelector: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<CountryElem | undefined>(undefined);
+  const info = useStore((state) => state.countryList);
   const updateStore = useActions((actions) => actions.setSelectedCountry);
   const displayCountryInfo = (country: CountryElem) => {
     setSelectedCountry(country);
     updateStore(country);
   };
+  if (info === undefined) {
+    return ( <> "not loaded" </> );
+  };
+
   return (
     <div>
       <CountrySelect

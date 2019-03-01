@@ -1,9 +1,7 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-//const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
 //const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-//const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 //const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 
@@ -27,10 +25,6 @@ config = {
       filename: "index.html",
       template: "index.template.html"
     }),
-  //  new MiniCssExtractPlugin({
-  //    filename: "[name].css",
-  //    chunkFilename: "[id].css"
-  //  }),
   ],
   module: {
     rules: [
@@ -39,13 +33,10 @@ config = {
         exclude: /node_modules/,
         use: ["ts-loader"]
       },
-  //    {
-  //      test: /\.css$/,
-  //      use: [
-  //        MiniCssExtractPlugin.loader,
-  //        "css-loader"
-  //      ]
-  //    }
+      {
+        test: /\.css$/,
+        use: [ "style-loader", "css-loader" ]
+      }
     ]
   }
 };
