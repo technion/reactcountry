@@ -1,6 +1,6 @@
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-//const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 //const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
@@ -50,7 +50,6 @@ module.exports = (env, argv) => {
         cssProcessorOptions: { discardComments: { removeAll: true } },
         canPrint: true
       }),
-      new HTMLInlineCSSWebpackPlugin()
     );
   } else {
     console.log("Running webpack dev build");
