@@ -1,19 +1,20 @@
-import React, { ErrorInfo } from "react";
+import React from "react";
 import { Alert, Intent } from "@blueprintjs/core";
 
 // Error boundaries don't yet work as hooks, and this must be a class.
-export class ErrorBoundary extends React.Component<{}, any> {
+export class ErrorBoundary extends React.Component<{}, { error: Error | undefined }> {
   constructor(props: {}) {
     super(props);
-    this.state = { hasError: false, error: undefined };
+    this.state = { error: undefined };
   }
   static getDerivedStateFromError(error: Error) {
-    return { hasError: true, error };
+    return { error };
   }
 
   render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
+    // If an error state is recorded, we alert on that state.
+    // This is intended for non-recoverable errors, so our only option presented is to reload the page.
+    if (this.state.error) {
       return (
         <Alert
           confirmButtonText="Reload this page"
@@ -26,6 +27,7 @@ export class ErrorBoundary extends React.Component<{}, any> {
         >
           <p>
             A fatal error has occured. The error was:
+            <br />
             {this.state.error.message}
           </p>
         </Alert>
