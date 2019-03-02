@@ -7,6 +7,8 @@ import { useActions, useStore } from "./countrystore";
 export type CountryElem = {
   name: string;
   flag: string;
+  capital: string;
+  population: number;
   alpha2Code: string;
 };
 
@@ -28,22 +30,21 @@ const renderCountry: ItemRenderer<CountryElem> = ( country, { handleClick, modif
   );
 };
 
-export const CountrySelector: React.FC = () => {
+export const CountrySelector: React.FC<{countryInfoList: CountryElem[]}> = ({countryInfoList}) => {
   const [selectedCountry, setSelectedCountry] = useState<CountryElem | undefined>(undefined);
-  const info = useStore((state) => state.countryList);
   const updateStore = useActions((actions) => actions.setSelectedCountry);
   const displayCountryInfo = (country: CountryElem) => {
     setSelectedCountry(country);
     updateStore(country);
   };
-  if (info === undefined) {
+  if (countryInfoList === undefined) {
     return ( <> "not loaded" </> );
   };
 
   return (
     <div>
       <CountrySelect
-        items={info}
+        items={countryInfoList}
         itemRenderer={renderCountry}
         onItemSelect={displayCountryInfo}
       >

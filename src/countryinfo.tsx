@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useActions } from "./countrystore";
 import { CountrySelector } from "./countryselector";
 
 export const CountryInformationPage = () => {
@@ -8,13 +7,26 @@ export const CountryInformationPage = () => {
   // 1. Loading screen
   // 2. Selector
   // 3. Country specific information displayed
-  const initialise = useActions(actions => actions.initialiseCountryList)
+  const [ countryInfoList, setcountryInfoList ] = useState<any>(undefined);
   useEffect(() => {
-    initialise();
-  });
+    getCountryInfoList()
+      .then((cli: any) => {
+        setcountryInfoList(cli);
+    });
+  }, []);
 
   return (
-    <CountrySelector />
+    <CountrySelector countryInfoList={countryInfoList} />
   );
 };
 
+async function getCountryInfoList() {
+  // API documented here: https://restcountries.eu/
+  const API = "https://restcountries.eu/rest/v2/all";
+  const response = await fetch(API);
+  // Detect errors such as 404 and throw
+  if (!response.ok) {
+      throw new Error("Invalid response from server fetch");
+    }
+  return await response.json();
+}
