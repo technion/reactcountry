@@ -16,8 +16,8 @@ export const Navigation = () => {
         <NavbarHeading>Country Information</NavbarHeading>
         <NavbarDivider />
         <AnchorButton
-          href="http://blueprintjs.com/docs/v2/"
-          text="Docs"
+          href="https://restcountries.eu/"
+          text="Countries API"
           target="_blank"
           minimal
           rightIcon="share"

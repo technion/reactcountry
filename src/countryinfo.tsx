@@ -8,12 +8,20 @@ export const CountryInformationPage = () => {
   // 2. Selector
   // 3. Country specific information displayed
   const [ countryInfoList, setcountryInfoList ] = useState<CountryElem[] | undefined>(undefined);
+  const [ errorState, setErrorState ] = useState<string | undefined>(undefined);
   useEffect(() => {
     getCountryInfoList()
       .then((cli: CountryElem[]) => {
         setcountryInfoList(cli);
-    });
+      }).catch((error) => {
+        setErrorState(error)
+      });
   }, []);
+
+  // Throw errors further up to the error boundary
+  if (errorState) {
+    throw new Error(errorState);
+  }
 
   return (
     <CountrySelector countryInfoList={countryInfoList} />

@@ -7,6 +7,7 @@ import { CountryInformationPage } from "./countryinfo";
 import { Navigation } from "./navbar";
 import { CountryData } from "./countrydata";
 import { store } from "./countrystore";
+import { ErrorBoundary } from "./errors";
 
 import "./styles.css";
 
@@ -19,8 +20,10 @@ const App = () => {
           Country information page
         </H1>
         Select your country below
-        <CountryInformationPage />
-        <CountryData />
+        <ErrorBoundary>
+          <CountryInformationPage />
+        </ErrorBoundary>
+      <CountryData />
       </React.StrictMode>
     </StoreProvider>
   );

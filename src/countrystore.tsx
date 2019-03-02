@@ -5,12 +5,12 @@ type MaybeCountryElem = CountryElem | undefined;
 
 export interface StoreModel {
   selectedCountry: MaybeCountryElem;
-  setSelectedCountry: Action<any, MaybeCountryElem>;
+  setSelectedCountry: Action<StoreModel, MaybeCountryElem>;
 }
 
 const model: StoreModel = {
   selectedCountry: undefined,
-  setSelectedCountry: (state: any, payload: MaybeCountryElem) => {
+  setSelectedCountry: (state, payload: MaybeCountryElem) => {
     state.selectedCountry = payload;
   }
 }

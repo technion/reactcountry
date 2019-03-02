@@ -16,11 +16,13 @@ https://boring-goldwasser-034663.netlify.com/
 
 # Development Commands
 
+```
 npm run start: Starts a dev server with hot reload on http://localhost:8080
 npm run dev: Builds dev mode environment
 npm run prod: Builds prod mode environment
 npm run analyse: Builds a prod mode environment and also outputs a bundle size report
 npm run lint: Runs linting service
+```
 
 # Browser support
 
