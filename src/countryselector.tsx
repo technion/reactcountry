@@ -30,7 +30,7 @@ const renderCountry: ItemRenderer<CountryElem> = ( country, { handleClick, modif
   );
 };
 
-export const CountrySelector: React.FC<{countryInfoList: CountryElem[]}> = ({countryInfoList}) => {
+export const CountrySelector: React.FC<{countryInfoList: CountryElem[] | undefined}> = ({countryInfoList}) => {
   const [selectedCountry, setSelectedCountry] = useState<CountryElem | undefined>(undefined);
   const updateStore = useActions((actions) => actions.setSelectedCountry);
   const displayCountryInfo = (country: CountryElem) => {

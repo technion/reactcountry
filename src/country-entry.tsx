@@ -13,13 +13,15 @@ import "./styles.css";
 const App = () => {
   return (
     <StoreProvider store={store}>
-      <Navigation />
-      <H1 className="myheader">
-        Country information page
-      </H1>
-      Select your country below
-      <CountryInformationPage />
-      <CountryData />
+      <React.StrictMode>
+        <Navigation />
+        <H1 className="myheader">
+          Country information page
+        </H1>
+        Select your country below
+        <CountryInformationPage />
+        <CountryData />
+      </React.StrictMode>
     </StoreProvider>
   );
 };

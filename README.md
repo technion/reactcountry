@@ -31,3 +31,7 @@ This application does not bundle polyfills or transpile ES6 and requires a moder
 Several remaining issues are documented here:
 
 https://github.com/technion/reactcountry/issues/1
+
+# Variations
+
+The countries API does not return the wikipedia page link, so it is not included.

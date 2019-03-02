@@ -33,7 +33,7 @@ export const CountryData = () => {
       <div className={Classes.DIALOG_BODY}>
         Welcome to the information page for the country of {country.name}.
         <br />
-        The population is {country.population} and its capital is {country.capital}.
+        The population is {country.population.toLocaleString()} and its capital is {country.capital}.
         <br />
         You may be interested in the country flag:
         <img src={country.flag} style={imgstyle} />

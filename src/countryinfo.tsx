@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-import { CountrySelector } from "./countryselector";
+import { CountrySelector, CountryElem } from "./countryselector";
 
 export const CountryInformationPage = () => {
   // Main application component. Moves through stages:
   // 1. Loading screen
   // 2. Selector
   // 3. Country specific information displayed
-  const [ countryInfoList, setcountryInfoList ] = useState<any>(undefined);
+  const [ countryInfoList, setcountryInfoList ] = useState<CountryElem[] | undefined>(undefined);
   useEffect(() => {
     getCountryInfoList()
-      .then((cli: any) => {
+      .then((cli: CountryElem[]) => {
         setcountryInfoList(cli);
     });
   }, []);

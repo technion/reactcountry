@@ -1,14 +1,16 @@
 import { Action, Thunk, createStore, createTypedHooks, thunk } from 'easy-peasy';
 import { CountryElem } from "./countryselector";
 
+type MaybeCountryElem = CountryElem | undefined;
+
 export interface StoreModel {
-  selectedCountry: CountryElem | undefined;
-  setSelectedCountry: Action<any, any>;
+  selectedCountry: MaybeCountryElem;
+  setSelectedCountry: Action<any, MaybeCountryElem>;
 }
 
 const model: StoreModel = {
   selectedCountry: undefined,
-  setSelectedCountry: (state: any, payload: any) => {
+  setSelectedCountry: (state: any, payload: MaybeCountryElem) => {
     state.selectedCountry = payload;
   }
 }
